@@ -10,7 +10,12 @@ function App() {
     <Container>
       <Header>My Counter</Header>
       <Number>{sumHistory(history)}</Number>
-      <Input type="text" placeholder="Enter a number"  onChange={handleChange} value={count}></Input>
+      <Input 
+        type="number" 
+        placeholder="Enter a number"  
+        onChange={handleChange} 
+        value={isNaN(count) ? '' : count}
+      />
       <Footer>
         <Button onClick={handleBefore}>⇦</Button>
         <Button onClick={handleIncrement}>+</Button>
@@ -28,8 +33,10 @@ function App() {
   }
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    //setHistory([...history, parseInt(event.target.value)])
-    setCount(parseInt(event.target.value))
+    const value = event.target.value
+    // 빈 문자열이거나 NaN인 경우 0으로 설정
+    const numValue = value === '' ? 0 : parseInt(value) || 0
+    setCount(numValue)
   }
 
   function handleIncrement() {

@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
-import CountView from './CountView'
 
 function App() {
   const [count, setCount] = useState(0)
